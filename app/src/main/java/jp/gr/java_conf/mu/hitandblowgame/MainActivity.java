@@ -246,8 +246,7 @@ public class MainActivity extends Activity {
         // 正解を保持する配列を用意
         correctAnswer = new String[4];
         // 成績保存、参照用のプリファレンスを用意
-//        pref = getSharedPreferences("hbRecord", MODE_WORLD_READABLE
-//                | MODE_WORLD_WRITEABLE);
+        pref = getSharedPreferences("hbRecord", MODE_PRIVATE);
         // ------------------------------------
 //
 //        // --------初期設定(3) イベント設定--------
