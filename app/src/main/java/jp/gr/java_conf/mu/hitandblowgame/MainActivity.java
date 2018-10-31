@@ -40,178 +40,179 @@ public class MainActivity extends Activity {
     private EditText[] answerColumn;
     // 正解が表示されるView
     private TextView[] correctAnswerColumn;
-//    // ゲーム中かどうかを判別するフラグ
-//    private boolean playing;
+    // ゲーム中かどうかを判別するフラグ
+    private boolean playing;
     // データ保存、読み込み用プリファレンス
     private SharedPreferences pref;
 
-//    // チェックボタンが押下されたときのイベントを定義するリスナー
-//    private final OnClickListener onClickCheckButtonListner = new OnClickListener() {
-//        @Override
-//        public void onClick(View v) {
-//            // ユーティリティを準備
-//            Utility u = new Utility();
-//            // 解答欄に入力された値を取得し、現在の解答として配列に保存
-//            String answer[] = new String[4];
-//            for (int i = 0; i < 4; i++) {
-//                answer[i] = answerColumn[i].getText().toString();
-//            }
-//            // --------入力チェック--------
-//            // 入力チェックエラー有無
-//            boolean error = false;
-//            // エラーメッセージ
-//            String errorMsg = "";
-//            if (u.nullCheck(answer) >= 0) {
-//                // 空の入力欄があった場合
-//                errorMsg = "未入力の欄があります";
-//                error = true;
-//            } else if (u.duplicateCheck(answer) >= 0) {
-//                // 重複があった場合
-//                errorMsg = "数字が重複しています";
-//                error = true;
-//            }
-//            // 入力エラーがあった場合はアラートを出して終了
-//            if (error) {
-//                AlertDialog.Builder ab = new AlertDialog.Builder(me);
-//                ab.setMessage(errorMsg);
-//                ab.setPositiveButton("OK",
-//                        new DialogInterface.OnClickListener() {
-//                            @Override
-//                            public void onClick(DialogInterface dialog,
-//                                                int which) {
-//                                // 現時点では空実装
-//                                // エラーがある入力欄にカーソルを合わせる処理を書くのが親切かもしれない
-//                            }
-//                        });
-//                ab.show();
-//                return;
-//            }
-//            // ----------------------------------
-//
-//            // 今回分の解答履歴を生成
-//            HistoryRowData rowData = createRowData(answer);
-//            // 解答履歴をリストビューの先頭に追加し、リストをリフレッシュ(アダプタに更新を通知)
-//            historyListAdapter.insert(0, rowData);
-//            historyListAdapter.notifyDataSetChanged();
-//
-//            // 正解だった場合(4Hitだった場合)
-//            if (rowData.getHit() == 4) {
-//                // ゲームクリア
+    // チェックボタンが押下されたときのイベントを定義するリスナー
+    private final OnClickListener onClickCheckButtonListner = new OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            // ユーティリティを準備
+            Utility u = new Utility();
+            // 解答欄に入力された値を取得し、現在の解答として配列に保存
+            String answer[] = new String[4];
+            for (int i = 0; i < 4; i++) {
+                answer[i] = answerColumn[i].getText().toString();
+            }
+            // --------入力チェック--------
+            // 入力チェックエラー有無
+            boolean error = false;
+            // エラーメッセージ
+            String errorMsg = "";
+            if (u.nullCheck(answer) >= 0) {
+                // 空の入力欄があった場合
+                errorMsg = "未入力の欄があります";
+                error = true;
+            } else if (u.duplicateCheck(answer) >= 0) {
+                // 重複があった場合
+                errorMsg = "数字が重複しています";
+                error = true;
+            }
+            // 入力エラーがあった場合はアラートを出して終了
+            if (error) {
+                AlertDialog.Builder ab = new AlertDialog.Builder(me);
+                ab.setMessage(errorMsg);
+                ab.setPositiveButton("OK",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                                int which) {
+                                // 現時点では空実装
+                                // エラーがある入力欄にカーソルを合わせる処理を書くのが親切かもしれない
+                            }
+                        });
+                ab.show();
+                return;
+            }
+            // ----------------------------------
+
+            // 今回分の解答履歴を生成
+            HistoryRowData rowData = createRowData(answer);
+            // 解答履歴をリストビューの先頭に追加し、リストをリフレッシュ(アダプタに更新を通知)
+            historyListAdapter.insert(0, rowData);
+            historyListAdapter.notifyDataSetChanged();
+
+            // 正解だった場合(4Hitだった場合)
+            if (rowData.getHit() == 4) {
+                // ゲームクリア
+                //TODO 有効化
 //                clearGame();
-//            }
-//            return;
-//        }
-//
-//        private HistoryRowData createRowData(String[] answer) {
-//            // Hit数、Blow数
-//            int hit = 0, blow = 0;
-//            // 解答と正解を比較してHit数、Blow数カウント
-//            for (int i = 0; i < 4; i++) {
-//                for (int j = 0; j < 4; j++) {
-//                    if (answer[i].equals(correctAnswer[j])) {
-//                        if (i == j) {
-//                            // 数字と位置が一致していた場合はHit
-//                            hit++;
-//                        } else {
-//                            // 数字のみ一致していた場合はBlow
-//                            blow++;
-//                        }
-//                    }
-//                }
-//            }
-//            // 解答履歴を生成
-//            HistoryRowData rowData = new HistoryRowData();
-//            rowData.setNo(historyListAdapter.getCount() + 1);
-//            rowData.setAnswer(answer[0] + answer[1] + answer[2] + answer[3]);
-//            rowData.setHit(hit);
-//            rowData.setBlow(blow);
-//            return rowData;
-//        }
-//    };
-//
-//    // リプレイボタンが押下されたときのイベントを定義するリスナー
-//    private final OnClickListener onClickReplayButtonListner = new OnClickListener() {
-//        @Override
-//        public void onClick(View v) {
-//            // 解答履歴をクリア
-//            historyListAdapter.clear();
-//            historyListAdapter.notifyDataSetChanged();
-//            // チェックボタンの有効化、リプレイボタンの無効化
-//            findViewById(R.id.checkButton).setVisibility(View.VISIBLE);
-//            findViewById(R.id.replayButton).setVisibility(View.INVISIBLE);
-//            // フェードアウト、フェードインのアニメーションを取得
-//            Animation animFadeOut = AnimationUtils.loadAnimation(me,
-//                    R.anim.answer_fadeout);
-//            Animation animFadeIn = AnimationUtils.loadAnimation(me,
-//                    R.anim.answer_fadein);
-//            animFadeOut.setDuration(20);
-//            animFadeIn.setDuration(20);
-//            // アニメーションをセット
-//            for (int i = 0; i < 4; i++) {
-//                // 解答欄をクリアしてフェードイン
-//                answerColumn[i].getEditableText().clear();
-//                answerColumn[i].startAnimation(animFadeIn);
-//                // 正解をフェードアウト
-//                correctAnswerColumn[i].startAnimation(animFadeOut);
-//            }
-//            // ゲーム開始
-//            startGame();
-//        }
-//    };
-//
-//    // 解答欄がタッチされたときのイベントを定義するリスナー
-//    private final OnTouchListener onTouchAnswerColumnListner = new OnTouchListener() {
-//        @Override
-//        public boolean onTouch(View v, MotionEvent event) {
-//            // onTouchイベントは、指が触れたとき、離れたときの2回発生するので、
-//            // 触れたとき(ACTION_DOWN)に処理実施
-//            if (event.getAction() == MotionEvent.ACTION_DOWN) {
-//                TextView t = (TextView) v;
-//                // 解答欄をクリアする
-//                if (t.getText().length() > 0) {
-//                    t.getEditableText().clear();
-//                }
-//            }
-//            return false;
-//        }
-//    };
-//
-//    // 解答欄が変更されたときのイベントを定義するリスナー(「次のフォーカス先」の情報を持つTextWather)
-//    private class OnChangeAnswerColumnListner implements TextWatcher {
-//        // テキスト変更が発生したTextView
-//        private TextView thisView;
-//        // 次のフォーカス先
-//        private View nextFocus = null;
-//
-//        // コンストラクタ。次フォーカス先を記録
-//        public OnChangeAnswerColumnListner(TextView thisView, View nextFocus) {
-//            this.thisView = thisView;
-//            this.nextFocus = nextFocus;
-//        }
-//
-//        @Override
-//        public void afterTextChanged(Editable s) {
-//            if (s.length() == 1 && nextFocus != null) {
-//                // 1文字の入力があったときは、次の入力欄にフォーカスを移す
-//                nextFocus.requestFocus();
-//            }
-//        }
-//
-//        @Override
-//        public void beforeTextChanged(CharSequence s, int start, int count,
-//                                      int after) {
-//        }
-//
-//        @Override
-//        public void onTextChanged(CharSequence s, int start, int before,
-//                                  int count) {
-//            if (s.length() == 2) {
-//                // 2文字目の入力があったときは、2文字目で1文字目を置き換える
-//                // (EditTextを削除せずに文字入力するための対応)
-//                thisView.setText(s.toString().substring(start, start + 1));
-//            }
-//        }
-//    };
+            }
+            return;
+        }
+
+        private HistoryRowData createRowData(String[] answer) {
+            // Hit数、Blow数
+            int hit = 0, blow = 0;
+            // 解答と正解を比較してHit数、Blow数カウント
+            for (int i = 0; i < 4; i++) {
+                for (int j = 0; j < 4; j++) {
+                    if (answer[i].equals(correctAnswer[j])) {
+                        if (i == j) {
+                            // 数字と位置が一致していた場合はHit
+                            hit++;
+                        } else {
+                            // 数字のみ一致していた場合はBlow
+                            blow++;
+                        }
+                    }
+                }
+            }
+            // 解答履歴を生成
+            HistoryRowData rowData = new HistoryRowData();
+            rowData.setNo(historyListAdapter.getCount() + 1);
+            rowData.setAnswer(answer[0] + answer[1] + answer[2] + answer[3]);
+            rowData.setHit(hit);
+            rowData.setBlow(blow);
+            return rowData;
+        }
+    };
+
+    // リプレイボタンが押下されたときのイベントを定義するリスナー
+    private final OnClickListener onClickReplayButtonListner = new OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            // 解答履歴をクリア
+            historyListAdapter.clear();
+            historyListAdapter.notifyDataSetChanged();
+            // チェックボタンの有効化、リプレイボタンの無効化
+            findViewById(R.id.checkButton).setVisibility(View.VISIBLE);
+            findViewById(R.id.replayButton).setVisibility(View.INVISIBLE);
+            // フェードアウト、フェードインのアニメーションを取得
+            Animation animFadeOut = AnimationUtils.loadAnimation(me,
+                    R.anim.answer_fadeout);
+            Animation animFadeIn = AnimationUtils.loadAnimation(me,
+                    R.anim.answer_fadein);
+            animFadeOut.setDuration(20);
+            animFadeIn.setDuration(20);
+            // アニメーションをセット
+            for (int i = 0; i < 4; i++) {
+                // 解答欄をクリアしてフェードイン
+                answerColumn[i].getEditableText().clear();
+                answerColumn[i].startAnimation(animFadeIn);
+                // 正解をフェードアウト
+                correctAnswerColumn[i].startAnimation(animFadeOut);
+            }
+            // ゲーム開始
+             startGame();
+        }
+    };
+
+    // 解答欄がタッチされたときのイベントを定義するリスナー
+    private final OnTouchListener onTouchAnswerColumnListner = new OnTouchListener() {
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            // onTouchイベントは、指が触れたとき、離れたときの2回発生するので、
+            // 触れたとき(ACTION_DOWN)に処理実施
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                TextView t = (TextView) v;
+                // 解答欄をクリアする
+                if (t.getText().length() > 0) {
+                    t.getEditableText().clear();
+                }
+            }
+            return false;
+        }
+    };
+
+    // 解答欄が変更されたときのイベントを定義するリスナー(「次のフォーカス先」の情報を持つTextWather)
+    private class OnChangeAnswerColumnListner implements TextWatcher {
+        // テキスト変更が発生したTextView
+        private TextView thisView;
+        // 次のフォーカス先
+        private View nextFocus = null;
+
+        // コンストラクタ。次フォーカス先を記録
+        public OnChangeAnswerColumnListner(TextView thisView, View nextFocus) {
+            this.thisView = thisView;
+            this.nextFocus = nextFocus;
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            if (s.length() == 1 && nextFocus != null) {
+                // 1文字の入力があったときは、次の入力欄にフォーカスを移す
+                nextFocus.requestFocus();
+            }
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count,
+                                      int after) {
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before,
+                                  int count) {
+            if (s.length() == 2) {
+                // 2文字目の入力があったときは、2文字目で1文字目を置き換える
+                // (EditTextを削除せずに文字入力するための対応)
+                thisView.setText(s.toString().substring(start, start + 1));
+            }
+        }
+    };
 
     // アクティビティ生成時
     @Override
@@ -248,29 +249,29 @@ public class MainActivity extends Activity {
         // 成績保存、参照用のプリファレンスを用意
         pref = getSharedPreferences("hbRecord", MODE_PRIVATE);
         // ------------------------------------
-//
-//        // --------初期設定(3) イベント設定--------
-//        // チェックボタンをクリックした際のイベントを登録
-//        findViewById(R.id.checkButton).setOnClickListener(
-//                onClickCheckButtonListner);
-//        // リプレイボタンをクリックした際のイベントを登録
-//        findViewById(R.id.replayButton).setOnClickListener(
-//                onClickReplayButtonListner);
-//        // 解答欄へのイベント登録
-//        EditText nextFocus;
-//        for (int i = 0; i < 4; i++) {
-//            // タッチされた時は解答欄をクリアする
-//            answerColumn[i].setOnTouchListener(onTouchAnswerColumnListner);
-//            // 解答欄に入力があった際のフォーカスの移動先(右隣)
-//            nextFocus = answerColumn[(i + 1) % 4];
-//            // 入力があった時はフォーカスを移動する
-//            answerColumn[i]
-//                    .addTextChangedListener(new OnChangeAnswerColumnListner(
-//                            answerColumn[i], nextFocus));
-//        }
-//        // ------------------------------------
-//        // ゲーム開始
-//        startGame();
+
+        // --------初期設定(3) イベント設定--------
+        // チェックボタンをクリックした際のイベントを登録
+        findViewById(R.id.checkButton).setOnClickListener(
+                onClickCheckButtonListner);
+        // リプレイボタンをクリックした際のイベントを登録
+        findViewById(R.id.replayButton).setOnClickListener(
+                onClickReplayButtonListner);
+        // 解答欄へのイベント登録
+        EditText nextFocus;
+        for (int i = 0; i < 4; i++) {
+            // タッチされた時は解答欄をクリアする
+            answerColumn[i].setOnTouchListener(onTouchAnswerColumnListner);
+            // 解答欄に入力があった際のフォーカスの移動先(右隣)
+            nextFocus = answerColumn[(i + 1) % 4];
+            // 入力があった時はフォーカスを移動する
+            answerColumn[i]
+                    .addTextChangedListener(new OnChangeAnswerColumnListner(
+                            answerColumn[i], nextFocus));
+        }
+        // ------------------------------------
+        // ゲーム開始
+        startGame();
     }
 
 //    // メニュー生成時
@@ -333,22 +334,22 @@ public class MainActivity extends Activity {
 //        }
 //        return true;
 //    }
-//
-//    // ゲーム開始処理
-//    private void startGame() {
-//        // 1つ目の解答欄にフォーカスを合わせる
-//        answerColumn[0].requestFocus();
-//        // 正解を計算
-//        setCorrectAnswer();
-//        // ゲーム回数をインクリメント
-//        long gameCount = pref.getLong("gameCount", 0);
-//        gameCount++;
-//        Editor e = pref.edit();
-//        e.putLong("gameCount", gameCount);
-//        e.commit();
-//        // ゲーム中にする
-//        playing = true;
-//    }
+
+    // ゲーム開始処理
+    private void startGame() {
+        // 1つ目の解答欄にフォーカスを合わせる
+        answerColumn[0].requestFocus();
+        // 正解を計算
+        setCorrectAnswer();
+        // ゲーム回数をインクリメント
+        long gameCount = pref.getLong("gameCount", 0);
+        gameCount++;
+        Editor e = pref.edit();
+        e.putLong("gameCount", gameCount);
+        e.commit();
+        // ゲーム中にする
+        playing = true;
+    }
 //
 //    // ゲームクリア処理
 //    private void clearGame() {
@@ -411,22 +412,22 @@ public class MainActivity extends Activity {
 //            correctAnswerColumn[i].startAnimation(animFadeIn[i]);
 //        }
 //    }
-//
-//    // 正解(ランダムな4桁の数字)をセットする
-//    private void setCorrectAnswer() {
-//        Utility u = new Utility();
-//        // 一時的な配列に0～9までを格納し、シャッフルする
-//        String[] tmp = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
-//        u.shuffle(tmp);
-//        // シャッフルした配列から先頭4つを取り出して正解とする
-//        for (int i = 0; i < 4; i++) {
-//            correctAnswer[i] = tmp[i];
-//        }
-//        // 正解をログ出力
-//        Log.d("debug", "[hbdebug]" + "CorrectAnswer = " + correctAnswer[0]
-//                + correctAnswer[1] + correctAnswer[2] + correctAnswer[3]);
-//    }
-//
+
+    // 正解(ランダムな4桁の数字)をセットする
+    private void setCorrectAnswer() {
+        Utility u = new Utility();
+        // 一時的な配列に0～9までを格納し、シャッフルする
+        String[] tmp = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+        u.shuffle(tmp);
+        // シャッフルした配列から先頭4つを取り出して正解とする
+        for (int i = 0; i < 4; i++) {
+            correctAnswer[i] = tmp[i];
+        }
+        // 正解をログ出力
+        Log.d("debug", "[hbdebug]" + "CorrectAnswer = " + correctAnswer[0]
+                + correctAnswer[1] + correctAnswer[2] + correctAnswer[3]);
+    }
+
 //    // 成績を表示する
 //    private void dispRecord() {
 //        // layoutInflater取得
