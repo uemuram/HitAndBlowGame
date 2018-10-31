@@ -97,8 +97,7 @@ public class MainActivity extends Activity {
             // 正解だった場合(4Hitだった場合)
             if (rowData.getHit() == 4) {
                 // ゲームクリア
-                //TODO 有効化
-//                clearGame();
+                clearGame();
             }
             return;
         }
@@ -274,66 +273,66 @@ public class MainActivity extends Activity {
         startGame();
     }
 
-//    // メニュー生成時
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // リソースで定義済みのメニューを取得、設定
-//        getMenuInflater().inflate(R.menu.menu, menu);
-//        return true;
-//    }
-//
-//    // メニュー表示時
-//    public boolean onPrepareOptionsMenu(Menu menu) {
-//        // ギブアップメニューの表示設定
-//        MenuItem giveUpMenu = (MenuItem) menu.findItem(R.id.menu_giveUp);
-//        if (playing) {
-//            // ゲーム中であれば、ギブアップメニューを表示
-//            giveUpMenu.setVisible(true);
-//        } else {
-//            // ゲーム中でなければ、ギブアップメニューを非表示
-//            giveUpMenu.setVisible(false);
-//        }
-//        super.onPrepareOptionsMenu(menu);
-//        return true;
-//    }
-//
-//    // メニュー選択時
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        AlertDialog.Builder ab = new AlertDialog.Builder(me);
-//        switch (item.getItemId()) {
-//            case R.id.menu_giveUp:
-//                // ギブアップ処理
-//                ab.setMessage("ギブアップしますか?");
-//                ab.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        // 正解を表示してゲーム終了
-//                        endGame();
-//                    }
-//                });
-//                ab.setNegativeButton("キャンセル", null);
-//                ab.show();
-//                break;
-//
-//            case R.id.menu_record:
-//                // 成績表示処理
-//                dispRecord();
-//                break;
-//
-//            case R.id.menu_quit:
-//                // ゲーム終了処理
-//                ab.setMessage("ゲームを終了しますか?");
-//                ab.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        me.finish();
-//                    }
-//                });
-//                ab.setNegativeButton("キャンセル", null);
-//                ab.show();
-//                break;
-//        }
-//        return true;
-//    }
+    // メニュー生成時
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // リソースで定義済みのメニューを取得、設定
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    // メニュー表示時
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        // ギブアップメニューの表示設定
+        MenuItem giveUpMenu = (MenuItem) menu.findItem(R.id.menu_giveUp);
+        if (playing) {
+            // ゲーム中であれば、ギブアップメニューを表示
+            giveUpMenu.setVisible(true);
+        } else {
+            // ゲーム中でなければ、ギブアップメニューを非表示
+            giveUpMenu.setVisible(false);
+        }
+        super.onPrepareOptionsMenu(menu);
+        return true;
+    }
+
+    // メニュー選択時
+    public boolean onOptionsItemSelected(MenuItem item) {
+        AlertDialog.Builder ab = new AlertDialog.Builder(me);
+        switch (item.getItemId()) {
+            case R.id.menu_giveUp:
+                // ギブアップ処理
+                ab.setMessage("ギブアップしますか?");
+                ab.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // 正解を表示してゲーム終了
+                        endGame();
+                    }
+                });
+                ab.setNegativeButton("キャンセル", null);
+                ab.show();
+                break;
+
+            case R.id.menu_record:
+                // 成績表示処理
+                 dispRecord();
+                break;
+
+            case R.id.menu_quit:
+                // ゲーム終了処理
+                ab.setMessage("ゲームを終了しますか?");
+                ab.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        me.finish();
+                    }
+                });
+                ab.setNegativeButton("キャンセル", null);
+                ab.show();
+                break;
+        }
+        return true;
+    }
 
     // ゲーム開始処理
     private void startGame() {
@@ -350,68 +349,68 @@ public class MainActivity extends Activity {
         // ゲーム中にする
         playing = true;
     }
-//
-//    // ゲームクリア処理
-//    private void clearGame() {
-//        // クリア回数を取得
-//        long clearCount = pref.getLong("clearCount", 0);
-//        // 正解までの平均回答数を取得
-//        float answerAvg = pref.getFloat("answerAvg", -1);
-//        // 今回の回答数を取得
-//        float nowAnswerCount = (float) (historyListAdapter.getCount());
-//        // 平均回答数を更新
-//        answerAvg = ((float) clearCount * answerAvg + nowAnswerCount)
-//                / ((float) clearCount + 1);
-//        // クリア回数をインクリメント
-//        clearCount++;
-//        // クリア回数、平均回答数を登録
-//        Editor e = pref.edit();
-//        e.putLong("clearCount", clearCount);
-//        e.putFloat("answerAvg", answerAvg);
-//        e.commit();
-//
-//        // ソフトウェアキーボードを隠す
-//        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-//        inputMethodManager.hideSoftInputFromWindow(getCurrentFocus()
-//                .getWindowToken(), 0);
-//        // 正解を表示してゲーム終了
-//        endGame();
-//        // アラート表示
-//        AlertDialog.Builder ab = new AlertDialog.Builder(me);
-//        ab.setMessage("正解!");
-//        ab.setPositiveButton("OK", null);
-//        ab.show();
-//    }
-//
-//    // ゲーム終了処理(正解表示など)
-//    private void endGame() {
-//        // ゲーム中を解除
-//        playing = false;
-//        // チェックボタンの無効化、リプレイボタンの有効化
-//        findViewById(R.id.checkButton).setVisibility(View.INVISIBLE);
-//        findViewById(R.id.replayButton).setVisibility(View.VISIBLE);
-//        // フェードアウト、フェードインのアニメーションを準備
-//        Animation[] animFadeOut = new Animation[4];
-//        Animation[] animFadeIn = new Animation[4];
-//        for (int i = 0; i < 4; i++) {
-//            // アニメーションをXMLから取得
-//            animFadeOut[i] = AnimationUtils.loadAnimation(me,
-//                    R.anim.answer_fadeout);
-//            animFadeIn[i] = AnimationUtils.loadAnimation(me,
-//                    R.anim.answer_fadein);
-//            // アニメーション開始時間を解答欄ごとに少しずつずらす
-//            animFadeOut[i].setStartOffset(i * 75);
-//            animFadeIn[i].setStartOffset(i * 75);
-//        }
-//        // アニメーションをセット
-//        for (int i = 0; i < 4; i++) {
-//            // 解答欄をフェードアウト
-//            answerColumn[i].startAnimation(animFadeOut[i]);
-//            // 正解をセットしてフェードイン
-//            correctAnswerColumn[i].setText(correctAnswer[i]);
-//            correctAnswerColumn[i].startAnimation(animFadeIn[i]);
-//        }
-//    }
+
+    // ゲームクリア処理
+    private void clearGame() {
+        // クリア回数を取得
+        long clearCount = pref.getLong("clearCount", 0);
+        // 正解までの平均回答数を取得
+        float answerAvg = pref.getFloat("answerAvg", -1);
+        // 今回の回答数を取得
+        float nowAnswerCount = (float) (historyListAdapter.getCount());
+        // 平均回答数を更新
+        answerAvg = ((float) clearCount * answerAvg + nowAnswerCount)
+                / ((float) clearCount + 1);
+        // クリア回数をインクリメント
+        clearCount++;
+        // クリア回数、平均回答数を登録
+        Editor e = pref.edit();
+        e.putLong("clearCount", clearCount);
+        e.putFloat("answerAvg", answerAvg);
+        e.commit();
+
+        // ソフトウェアキーボードを隠す
+        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(getCurrentFocus()
+                .getWindowToken(), 0);
+        // 正解を表示してゲーム終了
+        endGame();
+        // アラート表示
+        AlertDialog.Builder ab = new AlertDialog.Builder(me);
+        ab.setMessage("正解!");
+        ab.setPositiveButton("OK", null);
+        ab.show();
+    }
+
+    // ゲーム終了処理(正解表示など)
+    private void endGame() {
+        // ゲーム中を解除
+        playing = false;
+        // チェックボタンの無効化、リプレイボタンの有効化
+        findViewById(R.id.checkButton).setVisibility(View.INVISIBLE);
+        findViewById(R.id.replayButton).setVisibility(View.VISIBLE);
+        // フェードアウト、フェードインのアニメーションを準備
+        Animation[] animFadeOut = new Animation[4];
+        Animation[] animFadeIn = new Animation[4];
+        for (int i = 0; i < 4; i++) {
+            // アニメーションをXMLから取得
+            animFadeOut[i] = AnimationUtils.loadAnimation(me,
+                    R.anim.answer_fadeout);
+            animFadeIn[i] = AnimationUtils.loadAnimation(me,
+                    R.anim.answer_fadein);
+            // アニメーション開始時間を解答欄ごとに少しずつずらす
+            animFadeOut[i].setStartOffset(i * 75);
+            animFadeIn[i].setStartOffset(i * 75);
+        }
+        // アニメーションをセット
+        for (int i = 0; i < 4; i++) {
+            // 解答欄をフェードアウト
+            answerColumn[i].startAnimation(animFadeOut[i]);
+            // 正解をセットしてフェードイン
+            correctAnswerColumn[i].setText(correctAnswer[i]);
+            correctAnswerColumn[i].startAnimation(animFadeIn[i]);
+        }
+    }
 
     // 正解(ランダムな4桁の数字)をセットする
     private void setCorrectAnswer() {
@@ -428,52 +427,52 @@ public class MainActivity extends Activity {
                 + correctAnswer[1] + correctAnswer[2] + correctAnswer[3]);
     }
 
-//    // 成績を表示する
-//    private void dispRecord() {
-//        // layoutInflater取得
-//        LayoutInflater layoutInflater = (LayoutInflater) getApplicationContext()
-//                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//        // 成績表示用のレイアウトをXMLから取得
-//        View layout = layoutInflater.inflate(R.layout.record_alert, null);
-//
-//        // 表示内容を整備
-//        // ゲーム回数
-//        long gameCount = pref.getLong("gameCount", 0);
-//        // ゲーム中であれば、そのゲームはカウントしないようにするために1引いておく
-//        if (playing) {
-//            gameCount--;
-//        }
-//        // クリア回数
-//        long clearCount = pref.getLong("clearCount", 0);
-//        // 回答数の平均
-//        float answerAvg = pref.getFloat("answerAvg", -1);
-//        // 正解率
-//        float clearRatio = 0;
-//        if (gameCount >= 1) {
-//            clearRatio = ((float) clearCount / (float) gameCount) * 100;
-//        }
-//
-//        // 表示内容をセット
-//        ((TextView) layout.findViewById(R.id.record_gameCount)).setText(""
-//                + gameCount);
-//        ((TextView) layout.findViewById(R.id.record_clearCount)).setText(""
-//                + clearCount);
-//        ((TextView) layout.findViewById(R.id.record_clearRatio)).setText(String
-//                .format("%.1f", clearRatio));
-//        if (answerAvg == -1) {
-//            // 一度もクリアしていない場合は平均なし(ハイフン)
-//            ((TextView) layout.findViewById(R.id.record_answerAvg))
-//                    .setText("-");
-//        } else {
-//            ((TextView) layout.findViewById(R.id.record_answerAvg))
-//                    .setText(String.format("%.1f", answerAvg));
-//        }
-//
-//        // アラートを表示
-//        AlertDialog.Builder ab = new AlertDialog.Builder(me);
-//        ab.setTitle("成績");
-//        ab.setView(layout);
-//        ab.setPositiveButton("OK", null);
-//        ab.show();
-//    }
+    // 成績を表示する
+    private void dispRecord() {
+        // layoutInflater取得
+        LayoutInflater layoutInflater = (LayoutInflater) getApplicationContext()
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        // 成績表示用のレイアウトをXMLから取得
+        View layout = layoutInflater.inflate(R.layout.record_alert, null);
+
+        // 表示内容を整備
+        // ゲーム回数
+        long gameCount = pref.getLong("gameCount", 0);
+        // ゲーム中であれば、そのゲームはカウントしないようにするために1引いておく
+        if (playing) {
+            gameCount--;
+        }
+        // クリア回数
+        long clearCount = pref.getLong("clearCount", 0);
+        // 回答数の平均
+        float answerAvg = pref.getFloat("answerAvg", -1);
+        // 正解率
+        float clearRatio = 0;
+        if (gameCount >= 1) {
+            clearRatio = ((float) clearCount / (float) gameCount) * 100;
+        }
+
+        // 表示内容をセット
+        ((TextView) layout.findViewById(R.id.record_gameCount)).setText(""
+                + gameCount);
+        ((TextView) layout.findViewById(R.id.record_clearCount)).setText(""
+                + clearCount);
+        ((TextView) layout.findViewById(R.id.record_clearRatio)).setText(String
+                .format("%.1f", clearRatio));
+        if (answerAvg == -1) {
+            // 一度もクリアしていない場合は平均なし(ハイフン)
+            ((TextView) layout.findViewById(R.id.record_answerAvg))
+                    .setText("-");
+        } else {
+            ((TextView) layout.findViewById(R.id.record_answerAvg))
+                    .setText(String.format("%.1f", answerAvg));
+        }
+
+        // アラートを表示
+        AlertDialog.Builder ab = new AlertDialog.Builder(me);
+        ab.setTitle("成績");
+        ab.setView(layout);
+        ab.setPositiveButton("OK", null);
+        ab.show();
+    }
 }

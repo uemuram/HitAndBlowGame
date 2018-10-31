@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:paddingLeft="20sp" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:text="@string/record_gameCount_disp"
+            android:textColor="@color/recordBaseColor"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/record_gameCount"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:gravity="right"
+            android:paddingRight="2sp"
+            android:textColor="@color/recordBaseColor"
+            android:textSize="24sp" />
+
+        <TextView
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/times_disp"
+            android:textColor="@color/recordBaseColor"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:text="@string/record_clearCount_disp"
+            android:textColor="@color/recordBaseColor"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/record_clearCount"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:gravity="right"
+            android:paddingRight="2sp"
+            android:textColor="@color/recordBaseColor"
+            android:textSize="24sp" />
+
+        <TextView
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/times_disp"
+            android:textColor="@color/recordBaseColor"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:text="@string/record_clearRatio_disp"
+            android:textColor="@color/recordBaseColor"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/record_clearRatio"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:gravity="right"
+            android:paddingRight="2sp"
+            android:textColor="@color/recordBaseColor"
+            android:textSize="24sp" />
+
+        <TextView
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/percent_disp"
+            android:textColor="@color/recordBaseColor"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:text="@string/record_answerAvg_disp"
+            android:textColor="@color/recordBaseColor"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/record_answerAvg"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:gravity="right"
+            android:paddingRight="2sp"
+            android:textColor="@color/recordBaseColor"
+            android:textSize="24sp" />
+
+        <TextView
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/times_disp"
+            android:textColor="@color/recordBaseColor"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+</LinearLayout>
