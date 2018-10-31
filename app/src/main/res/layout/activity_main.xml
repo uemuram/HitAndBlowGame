@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal" >
+
+        <EditText
+            android:id="@+id/answerColumn0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="2"
+            android:width="60sp" >
+
+            <requestFocus />
+        </EditText>
+
+        <EditText
+            android:id="@+id/answerColumn1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/answerColumn0"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="2"
+            android:width="60sp" >
+        </EditText>
+
+        <EditText
+            android:id="@+id/answerColumn2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/answerColumn1"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="2"
+            android:width="60sp" >
+        </EditText>
+
+        <EditText
+            android:id="@+id/answerColumn3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/answerColumn2"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="2"
+            android:width="60sp" >
+        </EditText>
+
+        <TextView
+            android:id="@+id/correctAnswerColumn0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/answerColumn0"
+            android:layout_alignTop="@+id/answerColumn0"
+            android:gravity="center"
+            android:textColor="@color/correctAnswerColor"
+            android:textSize="33sp"
+            android:textStyle="bold"
+            android:visibility="invisible"
+            android:width="60sp" />
+
+        <TextView
+            android:id="@+id/correctAnswerColumn1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/answerColumn1"
+            android:layout_alignTop="@+id/answerColumn1"
+            android:gravity="center"
+            android:textColor="@color/correctAnswerColor"
+            android:textSize="33sp"
+            android:textStyle="bold"
+            android:visibility="invisible"
+            android:width="60sp" />
+
+        <TextView
+            android:id="@+id/correctAnswerColumn2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/answerColumn2"
+            android:layout_alignTop="@+id/answerColumn2"
+            android:gravity="center"
+            android:textColor="@color/correctAnswerColor"
+            android:textSize="33sp"
+            android:textStyle="bold"
+            android:visibility="invisible"
+            android:width="60sp" />
+
+        <TextView
+            android:id="@+id/correctAnswerColumn3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/answerColumn3"
+            android:layout_alignTop="@+id/answerColumn3"
+            android:gravity="center"
+            android:textColor="@color/correctAnswerColor"
+            android:textSize="33sp"
+            android:textStyle="bold"
+            android:visibility="invisible"
+            android:width="60sp" />
+
+        <Button
+            android:id="@+id/checkButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/answerColumn3"
+            android:text="@string/checkButton_disp"
+            android:width="80sp" />
+
+        <Button
+            android:id="@+id/replayButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/answerColumn3"
+            android:text="@string/replayButton_disp"
+            android:visibility="invisible"
+            android:width="80sp" />
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/historyList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </ListView>
+
+</LinearLayout>

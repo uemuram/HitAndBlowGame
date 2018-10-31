@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 正解表示欄の色  -->
+    <color name="correctAnswerColor">#ffdaB9</color>
+
+    <!-- Hit,Blowを表すH,Bの色(解答履歴) -->
+    <color name="hbColor">#ccffff00</color>
+
+    <!-- 解答の色(解答履歴) -->
+    <color name="answerHistoryColor">#cc23ce34</color>
+
+    <!-- 成績表示時の色(ベース) -->
+    <color name="recordBaseColor">#FFF</color>
+
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+</resources>

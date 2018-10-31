@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Hit and Blow</string>
+    <string name="checkButton_disp">Check</string>
+    <string name="replayButton_disp">Start</string>
+    <string name="historyH_disp">H</string>
+    <string name="historyB_disp">B</string>
+    <string name="record_gameCount_disp">ゲーム数</string>
+    <string name="record_clearCount_disp">正解数</string>
+    <string name="record_clearRatio_disp">正解率</string>
+    <string name="record_answerAvg_disp">平均回答数</string>
+    <string name="times_disp">回</string>
+    <string name="percent_disp">%</string>
+</resources>
