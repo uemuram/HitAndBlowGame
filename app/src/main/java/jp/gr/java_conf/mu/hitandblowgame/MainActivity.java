@@ -32,18 +32,18 @@ public class MainActivity extends Activity {
 
     // 自分自身(AlertDialogに渡すために定義しておく)
     private Activity me;
-//    // 正解(4桁の数字)
-//    private String[] correctAnswer;
-//    // 解答履歴を保持するアダプタ
-//    private HistoryListAdapter historyListAdapter;
-//    // 解答欄のView
-//    private EditText[] answerColumn;
-//    // 正解が表示されるView
-//    private TextView[] correctAnswerColumn;
+    // 正解(4桁の数字)
+    private String[] correctAnswer;
+    // 解答履歴を保持するアダプタ
+    private HistoryListAdapter historyListAdapter;
+    // 解答欄のView
+    private EditText[] answerColumn;
+    // 正解が表示されるView
+    private TextView[] correctAnswerColumn;
 //    // ゲーム中かどうかを判別するフラグ
 //    private boolean playing;
-//    // データ保存、読み込み用プリファレンス
-//    private SharedPreferences pref;
+    // データ保存、読み込み用プリファレンス
+    private SharedPreferences pref;
 
 //    // チェックボタンが押下されたときのイベントを定義するリスナー
 //    private final OnClickListener onClickCheckButtonListner = new OnClickListener() {
@@ -222,33 +222,33 @@ public class MainActivity extends Activity {
         // --------初期設定(1) 画面レイアウト整備--------
         // メイン画面のレイアウト(入力欄、ボタン、リストビュー含む)をセット
         setContentView(R.layout.activity_main);
-//        // 解答履歴を保持するリストビュー用のアダプタ
-//        historyListAdapter = new HistoryListAdapter(this,
-//                new ArrayList<HistoryRowData>());
-//        // リストビューを取得してアダプタを登録
-//        ((ListView) findViewById(R.id.historyList))
-//                .setAdapter(historyListAdapter);
-//        // ------------------------------------
-//
-//        // --------初期設定(2) データ整備--------
-//        // 解答欄を配列にセット
-//        answerColumn = new EditText[4];
-//        answerColumn[0] = (EditText) findViewById(R.id.answerColumn0);
-//        answerColumn[1] = (EditText) findViewById(R.id.answerColumn1);
-//        answerColumn[2] = (EditText) findViewById(R.id.answerColumn2);
-//        answerColumn[3] = (EditText) findViewById(R.id.answerColumn3);
-//        // 正解欄を配列にセット
-//        correctAnswerColumn = new TextView[4];
-//        correctAnswerColumn[0] = (TextView) findViewById(R.id.correctAnswerColumn0);
-//        correctAnswerColumn[1] = (TextView) findViewById(R.id.correctAnswerColumn1);
-//        correctAnswerColumn[2] = (TextView) findViewById(R.id.correctAnswerColumn2);
-//        correctAnswerColumn[3] = (TextView) findViewById(R.id.correctAnswerColumn3);
-//        // 正解を保持する配列を用意
-//        correctAnswer = new String[4];
-//        // 成績保存、参照用のプリファレンスを用意
+        // 解答履歴を保持するリストビュー用のアダプタ
+        historyListAdapter = new HistoryListAdapter(this,
+                new ArrayList<HistoryRowData>());
+        // リストビューを取得してアダプタを登録
+        ((ListView) findViewById(R.id.historyList))
+                .setAdapter(historyListAdapter);
+        // ------------------------------------
+
+        // --------初期設定(2) データ整備--------
+        // 解答欄を配列にセット
+        answerColumn = new EditText[4];
+        answerColumn[0] = (EditText) findViewById(R.id.answerColumn0);
+        answerColumn[1] = (EditText) findViewById(R.id.answerColumn1);
+        answerColumn[2] = (EditText) findViewById(R.id.answerColumn2);
+        answerColumn[3] = (EditText) findViewById(R.id.answerColumn3);
+        // 正解欄を配列にセット
+        correctAnswerColumn = new TextView[4];
+        correctAnswerColumn[0] = (TextView) findViewById(R.id.correctAnswerColumn0);
+        correctAnswerColumn[1] = (TextView) findViewById(R.id.correctAnswerColumn1);
+        correctAnswerColumn[2] = (TextView) findViewById(R.id.correctAnswerColumn2);
+        correctAnswerColumn[3] = (TextView) findViewById(R.id.correctAnswerColumn3);
+        // 正解を保持する配列を用意
+        correctAnswer = new String[4];
+        // 成績保存、参照用のプリファレンスを用意
 //        pref = getSharedPreferences("hbRecord", MODE_WORLD_READABLE
 //                | MODE_WORLD_WRITEABLE);
-//        // ------------------------------------
+        // ------------------------------------
 //
 //        // --------初期設定(3) イベント設定--------
 //        // チェックボタンをクリックした際のイベントを登録
