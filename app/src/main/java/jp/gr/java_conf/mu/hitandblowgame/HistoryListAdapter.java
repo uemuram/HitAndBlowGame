@@ -60,7 +60,6 @@ public class HistoryListAdapter extends BaseAdapter {
 	 *            挿入位置
 	 * @param rowData
 	 *            挿入対象の要素
-	 * @return なし
 	 */
 	public void insert(int idx,HistoryRowData rowData){
 		historyList.add(0, rowData);
@@ -69,7 +68,6 @@ public class HistoryListAdapter extends BaseAdapter {
 	/**
 	 * 要素をリセットする
 	 *
-	 * @return なし
 	 */
 	public void clear(){
 		historyList.clear();

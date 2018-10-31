@@ -50,7 +50,6 @@ public class Utility {
 	 *            入れ替え対象のインデックス(1)
 	 * @param idx2
 	 *            入れ替え対象のインデックス(2)
-	 * @return なし
 	 */
 	public void swap(String[] arr, int idx1, int idx2) {
 		String tmp = arr[idx1];
@@ -63,7 +62,6 @@ public class Utility {
 	 * 
 	 * @param arr
 	 *            対象の配列
-	 * @return なし
 	 */
 	public void shuffle(String[] arr) {
 		// Fisher-Yates法でシャッフル

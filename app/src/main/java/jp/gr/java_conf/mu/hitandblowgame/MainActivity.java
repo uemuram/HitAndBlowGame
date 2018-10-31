@@ -211,7 +211,7 @@ public class MainActivity extends Activity {
                 thisView.setText(s.toString().substring(start, start + 1));
             }
         }
-    };
+    }
 
     // アクティビティ生成時
     @Override
@@ -419,9 +419,7 @@ public class MainActivity extends Activity {
         String[] tmp = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
         u.shuffle(tmp);
         // シャッフルした配列から先頭4つを取り出して正解とする
-        for (int i = 0; i < 4; i++) {
-            correctAnswer[i] = tmp[i];
-        }
+        System.arraycopy(tmp, 0, correctAnswer, 0, 4);
         // 正解をログ出力
         Log.d("debug", "[hbdebug]" + "CorrectAnswer = " + correctAnswer[0]
                 + correctAnswer[1] + correctAnswer[2] + correctAnswer[3]);
