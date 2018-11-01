@@ -274,6 +274,7 @@ public class MainActivity extends Activity {
     }
 
     // メニュー生成時
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // リソースで定義済みのメニューを取得、設定
         getMenuInflater().inflate(R.menu.menu, menu);
@@ -281,6 +282,7 @@ public class MainActivity extends Activity {
     }
 
     // メニュー表示時
+    @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         // ギブアップメニューの表示設定
         MenuItem giveUpMenu = (MenuItem) menu.findItem(R.id.menu_giveUp);
@@ -296,6 +298,7 @@ public class MainActivity extends Activity {
     }
 
     // メニュー選択時
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         AlertDialog.Builder ab = new AlertDialog.Builder(me);
         switch (item.getItemId()) {
