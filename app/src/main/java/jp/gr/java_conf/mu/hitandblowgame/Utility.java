@@ -1,6 +1,6 @@
 package jp.gr.java_conf.mu.hitandblowgame;
 
-public class Utility {
+class Utility {
 	/**
 	 * 配列の要素の重複チェックを行う
 	 * 
@@ -51,7 +51,7 @@ public class Utility {
 	 * @param idx2
 	 *            入れ替え対象のインデックス(2)
 	 */
-	public void swap(String[] arr, int idx1, int idx2) {
+	private void swap(String[] arr, int idx1, int idx2) {
 		String tmp = arr[idx1];
 		arr[idx1] = arr[idx2];
 		arr[idx2] = tmp;

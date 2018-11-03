@@ -9,9 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-public class HistoryListAdapter extends BaseAdapter {
+class HistoryListAdapter extends BaseAdapter {
 
-	private LayoutInflater layoutInflater = null;
+	private LayoutInflater layoutInflater;
 	private ArrayList<HistoryRowData> historyList = null;
 
 	public HistoryListAdapter(Context context,
@@ -39,7 +39,7 @@ public class HistoryListAdapter extends BaseAdapter {
 		}
 
 		// 各idの項目に値をセット
-		TextView no = (TextView) convertView.findViewById(R.id.historyNo);
+		TextView no = convertView.findViewById(R.id.historyNo);
 		TextView answer = (TextView) convertView
 				.findViewById(R.id.historyAnswer);
 		TextView hit = (TextView) convertView.findViewById(R.id.historyHit);

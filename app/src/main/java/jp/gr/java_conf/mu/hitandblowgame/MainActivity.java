@@ -1,7 +1,5 @@
 package jp.gr.java_conf.mu.hitandblowgame;
 
-import android.support.v7.app.AppCompatActivity;
-
 import java.util.ArrayList;
 
 import android.app.Activity;
@@ -46,7 +44,7 @@ public class MainActivity extends Activity {
     private SharedPreferences pref;
 
     // チェックボタンが押下されたときのイベントを定義するリスナー
-    private final OnClickListener onClickCheckButtonListner = new OnClickListener() {
+    private final OnClickListener onClickCheckButtonListener = new OnClickListener() {
         @Override
         public void onClick(View v) {
             // ユーティリティを準備
@@ -99,7 +97,6 @@ public class MainActivity extends Activity {
                 // ゲームクリア
                 clearGame();
             }
-            return;
         }
 
         private HistoryRowData createRowData(String[] answer) {
@@ -130,7 +127,7 @@ public class MainActivity extends Activity {
     };
 
     // リプレイボタンが押下されたときのイベントを定義するリスナー
-    private final OnClickListener onClickReplayButtonListner = new OnClickListener() {
+    private final OnClickListener onClickReplayButtonListener = new OnClickListener() {
         @Override
         public void onClick(View v) {
             // 解答履歴をクリア
@@ -160,7 +157,7 @@ public class MainActivity extends Activity {
     };
 
     // 解答欄がタッチされたときのイベントを定義するリスナー
-    private final OnTouchListener onTouchAnswerColumnListner = new OnTouchListener() {
+    private final OnTouchListener onTouchAnswerColumnListener = new OnTouchListener() {
         @Override
         public boolean onTouch(View v, MotionEvent event) {
             // onTouchイベントは、指が触れたとき、離れたときの2回発生するので、
@@ -176,15 +173,15 @@ public class MainActivity extends Activity {
         }
     };
 
-    // 解答欄が変更されたときのイベントを定義するリスナー(「次のフォーカス先」の情報を持つTextWather)
-    private class OnChangeAnswerColumnListner implements TextWatcher {
+    // 解答欄が変更されたときのイベントを定義するリスナー(「次のフォーカス先」の情報を持つテキストウォッチャー)
+    private class OnChangeAnswerColumnListener implements TextWatcher {
         // テキスト変更が発生したTextView
         private TextView thisView;
         // 次のフォーカス先
-        private View nextFocus = null;
+        private View nextFocus;
 
         // コンストラクタ。次フォーカス先を記録
-        public OnChangeAnswerColumnListner(TextView thisView, View nextFocus) {
+        OnChangeAnswerColumnListener(TextView thisView, View nextFocus) {
             this.thisView = thisView;
             this.nextFocus = nextFocus;
         }
@@ -233,7 +230,7 @@ public class MainActivity extends Activity {
         // --------初期設定(2) データ整備--------
         // 解答欄を配列にセット
         answerColumn = new EditText[4];
-        answerColumn[0] = (EditText) findViewById(R.id.answerColumn0);
+        answerColumn[0] = findViewById(R.id.answerColumn0);
         answerColumn[1] = (EditText) findViewById(R.id.answerColumn1);
         answerColumn[2] = (EditText) findViewById(R.id.answerColumn2);
         answerColumn[3] = (EditText) findViewById(R.id.answerColumn3);
@@ -252,20 +249,20 @@ public class MainActivity extends Activity {
         // --------初期設定(3) イベント設定--------
         // チェックボタンをクリックした際のイベントを登録
         findViewById(R.id.checkButton).setOnClickListener(
-                onClickCheckButtonListner);
+                onClickCheckButtonListener);
         // リプレイボタンをクリックした際のイベントを登録
         findViewById(R.id.replayButton).setOnClickListener(
-                onClickReplayButtonListner);
+                onClickReplayButtonListener);
         // 解答欄へのイベント登録
         EditText nextFocus;
         for (int i = 0; i < 4; i++) {
             // タッチされた時は解答欄をクリアする
-            answerColumn[i].setOnTouchListener(onTouchAnswerColumnListner);
+            answerColumn[i].setOnTouchListener(onTouchAnswerColumnListener);
             // 解答欄に入力があった際のフォーカスの移動先(右隣)
             nextFocus = answerColumn[(i + 1) % 4];
             // 入力があった時はフォーカスを移動する
             answerColumn[i]
-                    .addTextChangedListener(new OnChangeAnswerColumnListner(
+                    .addTextChangedListener(new OnChangeAnswerColumnListener(
                             answerColumn[i], nextFocus));
         }
         // ------------------------------------

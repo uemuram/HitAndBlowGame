@@ -1,6 +1,6 @@
 package jp.gr.java_conf.mu.hitandblowgame;
 
-public class HistoryRowData {
+class HistoryRowData {
 	private int no = 0;
 	private String answer = null;
 	private int hit = 0;
