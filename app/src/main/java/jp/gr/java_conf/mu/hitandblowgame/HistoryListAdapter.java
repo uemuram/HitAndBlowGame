@@ -73,6 +73,24 @@ class HistoryListAdapter extends BaseAdapter {
 		historyList.clear();
 	}
 
+	/**
+	 * 既存のリストと重複しているかどうかチェックする
+	 *
+	 * @param rowData
+	 *             チェック対象の行データ
+	 *
+	 * @return
+	 *          重複ありならtrue
+	 */
+	public boolean isDuplicated(HistoryRowData rowData){
+	    for(HistoryRowData data :this.historyList ){
+	        if(data.equals(rowData)){
+	            return true;
+            }
+        }
+		return false;
+	}
+
 	@Override
 	public int getCount() {
 		return historyList.size();

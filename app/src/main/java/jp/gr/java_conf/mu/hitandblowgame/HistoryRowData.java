@@ -38,4 +38,7 @@ class HistoryRowData {
 		this.blow = blow;
 	}
 
+	public boolean equals(HistoryRowData data){
+		return data.answer.equals(this.answer);
+	}
 }

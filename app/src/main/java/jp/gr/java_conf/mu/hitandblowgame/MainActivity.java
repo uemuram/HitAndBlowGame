@@ -68,6 +68,16 @@ public class MainActivity extends Activity {
                 errorMsg = "数字が重複しています";
                 error = true;
             }
+
+            // 今回分の解答履歴を生成
+            HistoryRowData rowData = createRowData(answer);
+
+            if(historyListAdapter.isDuplicated(rowData)){
+                // 既にチェック済みの場合
+                errorMsg = "チェック済みです";
+                error = true;
+            }
+
             // 入力エラーがあった場合はアラートを出して終了
             if (error) {
                 AlertDialog.Builder ab = new AlertDialog.Builder(me);
@@ -86,8 +96,6 @@ public class MainActivity extends Activity {
             }
             // ----------------------------------
 
-            // 今回分の解答履歴を生成
-            HistoryRowData rowData = createRowData(answer);
             // 解答履歴をリストビューの先頭に追加し、リストをリフレッシュ(アダプタに更新を通知)
             historyListAdapter.insert(0, rowData);
             historyListAdapter.notifyDataSetChanged();
@@ -231,15 +239,15 @@ public class MainActivity extends Activity {
         // 解答欄を配列にセット
         answerColumn = new EditText[4];
         answerColumn[0] = findViewById(R.id.answerColumn0);
-        answerColumn[1] = (EditText) findViewById(R.id.answerColumn1);
-        answerColumn[2] = (EditText) findViewById(R.id.answerColumn2);
-        answerColumn[3] = (EditText) findViewById(R.id.answerColumn3);
+        answerColumn[1] = findViewById(R.id.answerColumn1);
+        answerColumn[2] = findViewById(R.id.answerColumn2);
+        answerColumn[3] = findViewById(R.id.answerColumn3);
         // 正解欄を配列にセット
         correctAnswerColumn = new TextView[4];
-        correctAnswerColumn[0] = (TextView) findViewById(R.id.correctAnswerColumn0);
-        correctAnswerColumn[1] = (TextView) findViewById(R.id.correctAnswerColumn1);
-        correctAnswerColumn[2] = (TextView) findViewById(R.id.correctAnswerColumn2);
-        correctAnswerColumn[3] = (TextView) findViewById(R.id.correctAnswerColumn3);
+        correctAnswerColumn[0] = findViewById(R.id.correctAnswerColumn0);
+        correctAnswerColumn[1] = findViewById(R.id.correctAnswerColumn1);
+        correctAnswerColumn[2] = findViewById(R.id.correctAnswerColumn2);
+        correctAnswerColumn[3] = findViewById(R.id.correctAnswerColumn3);
         // 正解を保持する配列を用意
         correctAnswer = new String[4];
         // 成績保存、参照用のプリファレンスを用意
